@@ -9,3 +9,8 @@ export const selectOffers = createSelector(
   selectOfferState,
   offerSelectors.selectAll
   );
+
+export const selectIsOfferLoading = createSelector(
+  selectOfferState,
+  (state) => state.isLoading
+)
