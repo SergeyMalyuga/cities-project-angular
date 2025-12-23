@@ -6,11 +6,14 @@ import {OfferPreview} from '../../core/models/offers';
 import {selectOffers} from '../../store/app/selectors/app.selectors';
 import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
 import {OfferCardComponent} from '../../shared/offer-card/offer-card.component';
+import {SelectCityDirective} from './directives/select-city.directive';
+import {CityName} from '../../core/constants/const';
+import {CityByNamePipe} from './pipes/city-by-name.pipe';
 
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
-  imports: [HeaderComponent, OfferCardComponent]
+  imports: [HeaderComponent, OfferCardComponent, SelectCityDirective, CityByNamePipe]
 })
 export class MainComponent implements OnInit {
   private store = inject(Store<AppState>);
@@ -22,4 +25,6 @@ export class MainComponent implements OnInit {
     this.store.select(selectOffers).pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe((offers: OfferPreview[]) => this.offers.set(offers));
   }
+
+  protected readonly CityName = CityName;
 }
