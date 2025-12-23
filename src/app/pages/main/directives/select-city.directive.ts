@@ -18,6 +18,5 @@ export class SelectCityDirective {
   onCityBtnClick(evt: MouseEvent) {
     evt.preventDefault();
     this.citySelected.emit(this.city);
-    console.log(this.city);
   }
 }
