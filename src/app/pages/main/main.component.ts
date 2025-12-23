@@ -12,11 +12,12 @@ import {CityByNamePipe} from './pipes/city-by-name.pipe';
 import {City} from '../../core/models/city';
 import {OffersByCityPipe} from './pipes/offers-by-city.pipe';
 import {LoaderComponent} from '../../shared/loader/loader.component';
+import {PlacesSortingFormComponent} from '../../features/places-sorting-form/places-sorting-form.component';
 
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
-  imports: [HeaderComponent, OfferCardComponent, SelectCityDirective, CityByNamePipe, OffersByCityPipe, LoaderComponent]
+  imports: [HeaderComponent, OfferCardComponent, SelectCityDirective, CityByNamePipe, OffersByCityPipe, LoaderComponent, PlacesSortingFormComponent]
 })
 export class MainComponent implements OnInit {
   private store = inject(Store<AppState>);
