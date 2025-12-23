@@ -6,7 +6,7 @@
                     <use xlink:href="#icon-arrow-select"></use>
                   </svg>
                 </span>
-  <ul class="places__options places__options--custom" [class.places__options--opened]="isSortFormOpen()">
+  <ul appMouseLeave (mouseLeaved)="closeSortMenu()" class="places__options places__options--custom" [class.places__options--opened]="isSortFormOpen()">
     <li class="places__option places__option--active" tabindex="0">Popular</li>
     <li class="places__option" tabindex="0">Price: low to high</li>
     <li class="places__option" tabindex="0">Price: high to low</li>
