@@ -9,37 +9,43 @@
         <section class="locations container">
           <ul class="locations__list tabs__list">
             <li class="locations__item">
-              <a appSelectCity [city]="CityName.PARIS | cityByName" [currentCity]="currentCity()" (citySelected)="onCitySelected($event)"
+              <a appSelectCity [city]="CityName.PARIS | cityByName" [currentCity]="currentCity()"
+                 (citySelected)="onCitySelected($event)"
                  class="locations__item-link tabs__item" href="#">
                 <span>Paris</span>
               </a>
             </li>
             <li class="locations__item">
-              <a appSelectCity [city]="CityName.COLOGNE | cityByName" [currentCity]="currentCity()" (citySelected)="onCitySelected($event)"
+              <a appSelectCity [city]="CityName.COLOGNE | cityByName" [currentCity]="currentCity()"
+                 (citySelected)="onCitySelected($event)"
                  class="locations__item-link tabs__item" href="#">
                 <span>Cologne</span>
               </a>
             </li>
             <li class="locations__item">
-              <a appSelectCity [city]="CityName.BRUSSELS | cityByName" [currentCity]="currentCity()" (citySelected)="onCitySelected($event)"
+              <a appSelectCity [city]="CityName.BRUSSELS | cityByName" [currentCity]="currentCity()"
+                 (citySelected)="onCitySelected($event)"
                  class="locations__item-link tabs__item" href="#">
                 <span>Brussels</span>
               </a>
             </li>
             <li class="locations__item">
-              <a appSelectCity [city]="CityName.AMSTERDAM | cityByName" [currentCity]="currentCity()" (citySelected)="onCitySelected($event)"
+              <a appSelectCity [city]="CityName.AMSTERDAM | cityByName" [currentCity]="currentCity()"
+                 (citySelected)="onCitySelected($event)"
                  class="locations__item-link tabs__item">
                 <span>Amsterdam</span>
               </a>
             </li>
             <li class="locations__item">
-              <a appSelectCity [city]="CityName.HAMBURG | cityByName" [currentCity]="currentCity()" (citySelected)="onCitySelected($event)"
+              <a appSelectCity [city]="CityName.HAMBURG | cityByName" [currentCity]="currentCity()"
+                 (citySelected)="onCitySelected($event)"
                  class="locations__item-link tabs__item" href="#">
                 <span>Hamburg</span>
               </a>
             </li>
             <li class="locations__item">
-              <a appSelectCity [city]="CityName.DUSSELDORF | cityByName" [currentCity]="currentCity()" (citySelected)="onCitySelected($event)"
+              <a appSelectCity [city]="CityName.DUSSELDORF | cityByName" [currentCity]="currentCity()"
+                 (citySelected)="onCitySelected($event)"
                  class="locations__item-link tabs__item" href="#">
                 <span>Dusseldorf</span>
               </a>
@@ -51,8 +57,9 @@
         <div class="cities__places-container container">
           <section class="cities__places places">
             <h2 class="visually-hidden">Places</h2>
-            <b class="places__found">{{(offers() | offersByCity: currentCity()).length}} places to stay in {{currentCity().name}}</b>
-            <app-places-sorting-form></app-places-sorting-form>
+            <b class="places__found">{{ (offers() | offersByCity: currentCity()).length }} places to stay
+              in {{ currentCity().name }}</b>
+            <app-places-sorting-form (sortTypeSelected)="onSortTypeSelected($event)"></app-places-sorting-form>
             <div class="cities__places-list places__list tabs__content">
               @for (offer of offers() | offersByCity: currentCity(); track offer.id) {
                 <app-offer-card [offer]="offer"></app-offer-card>

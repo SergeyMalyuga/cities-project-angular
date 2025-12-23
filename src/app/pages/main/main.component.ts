@@ -7,7 +7,7 @@ import {selectIsOfferLoading, selectOffers} from '../../store/app/selectors/app.
 import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
 import {OfferCardComponent} from '../../shared/offer-card/offer-card.component';
 import {SelectCityDirective} from './directives/select-city.directive';
-import {CityName, DEFAULT_CITY} from '../../core/constants/const';
+import {CityName, DEFAULT_CITY, SortType} from '../../core/constants/const';
 import {CityByNamePipe} from './pipes/city-by-name.pipe';
 import {City} from '../../core/models/city';
 import {OffersByCityPipe} from './pipes/offers-by-city.pipe';
@@ -26,6 +26,7 @@ export class MainComponent implements OnInit {
   public offers = signal<OfferPreview[]>([]);
   public currentCity = signal<City>(DEFAULT_CITY);
   public isOfferLoading = signal<boolean>(false);
+  public sortType = signal<SortType>(SortType.POPULAR);
   public readonly CityName = CityName;
 
   ngOnInit(): void {
@@ -38,5 +39,9 @@ export class MainComponent implements OnInit {
 
   onCitySelected(city: City) {
     this.currentCity.set(city);
+  }
+
+  onSortTypeSelected(sortType: SortType) {
+    this.sortType.set(sortType);
   }
 }
