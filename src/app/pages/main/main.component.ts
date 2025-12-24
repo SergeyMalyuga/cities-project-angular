@@ -13,11 +13,12 @@ import {City} from '../../core/models/city';
 import {OffersByCityPipe} from './pipes/offers-by-city.pipe';
 import {LoaderComponent} from '../../shared/loader/loader.component';
 import {PlacesSortingFormComponent} from '../../features/places-sorting-form/places-sorting-form.component';
+import {SortByPipe} from '../../features/places-sorting-form/pipes/sort-by.pipe';
 
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
-  imports: [HeaderComponent, OfferCardComponent, SelectCityDirective, CityByNamePipe, OffersByCityPipe, LoaderComponent, PlacesSortingFormComponent]
+  imports: [HeaderComponent, OfferCardComponent, SelectCityDirective, CityByNamePipe, OffersByCityPipe, LoaderComponent, PlacesSortingFormComponent, SortByPipe]
 })
 export class MainComponent implements OnInit {
   private store = inject(Store<AppState>);
@@ -39,6 +40,7 @@ export class MainComponent implements OnInit {
 
   onCitySelected(city: City) {
     this.currentCity.set(city);
+    this.sortType.set(SortType.POPULAR);
   }
 
   onSortTypeSelected(sortType: SortType) {

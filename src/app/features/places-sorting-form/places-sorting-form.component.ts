@@ -29,5 +29,6 @@ export class PlacesSortingFormComponent {
 
   public onSortTypeSelected(sortType: SortType) {
     this.sortTypeSelected.emit(sortType);
+    this.isSortFormOpen.set(false);
   }
 }
