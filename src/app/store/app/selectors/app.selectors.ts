@@ -17,9 +17,9 @@ export const selectIsOfferLoading = createSelector(
   (state) => state.isLoading,
 );
 
-export const selectUser = createSelector(
+export const selectUserEmail = createSelector(
   selectUserState,
-  (state) => state.user);
+  (state) => state.user?.email);
 
 export const selectAuthStatus = createSelector(
   selectUserState,
