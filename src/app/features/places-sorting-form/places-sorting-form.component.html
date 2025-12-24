@@ -2,7 +2,7 @@
   <span class="places__sorting-caption">Sort by</span>
   <span appTogglePlacesSort [isOpen]="isSortFormOpen()" (placesSortToggled)="onPlacesSortToggled($event)"
         class="places__sorting-type" tabindex="0">
-                  Popular
+                  {{currentSortType}}
                   <svg class="places__sorting-arrow" width="7" height="4">
                     <use xlink:href="#icon-arrow-select"></use>
                   </svg>
@@ -10,16 +10,16 @@
   <ul appMouseLeave (mouseLeaved)="closeSortMenu()" class="places__options places__options--custom"
       [class.places__options--opened]="isSortFormOpen()">
     <li appSelectSortType [sortType]="SortType.POPULAR" (sortTypeSelected)="onSortTypeSelected($event)"
-        class="places__option places__option--active" tabindex="0">Popular
+        class="places__option" [class.places__option--active]="currentSortType === SortType.POPULAR" tabindex="0">Popular
     </li>
     <li appSelectSortType [sortType]="SortType.PRICE_LOW_TO_HIGH" (sortTypeSelected)="onSortTypeSelected($event)"
-        class="places__option" tabindex="0">Price: low to high
+        class="places__option" [class.places__option--active]="currentSortType === SortType.PRICE_LOW_TO_HIGH" tabindex="0">Price: low to high
     </li>
     <li appSelectSortType [sortType]="SortType.PRICE_HIGH_TO_LOW" (sortTypeSelected)="onSortTypeSelected($event)"
-        class="places__option" tabindex="0">Price: high to low
+        class="places__option" [class.places__option--active]="currentSortType === SortType.PRICE_HIGH_TO_LOW" tabindex="0">Price: high to low
     </li>
     <li appSelectSortType [sortType]="SortType.TOP_RATED_FIRST" (sortTypeSelected)="onSortTypeSelected($event)"
-        class="places__option" tabindex="0">Top rated first
+        class="places__option" [class.places__option--active]="currentSortType === SortType.TOP_RATED_FIRST" tabindex="0">Top rated first
     </li>
   </ul>
 </form>

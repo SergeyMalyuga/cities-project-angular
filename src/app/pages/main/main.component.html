@@ -59,7 +59,7 @@
             <h2 class="visually-hidden">Places</h2>
             <b class="places__found">{{ (offers() | offersByCity: currentCity()).length }} places to stay
               in {{ currentCity().name }}</b>
-            <app-places-sorting-form (sortTypeSelected)="onSortTypeSelected($event)"></app-places-sorting-form>
+            <app-places-sorting-form [currentSortType]="sortType()" (sortTypeSelected)="onSortTypeSelected($event)"></app-places-sorting-form>
             <div class="cities__places-list places__list tabs__content">
               @for (offer of offers() | offersByCity: currentCity() | sortBy: sortType(); track offer.id) {
                 <app-offer-card [offer]="offer"></app-offer-card>

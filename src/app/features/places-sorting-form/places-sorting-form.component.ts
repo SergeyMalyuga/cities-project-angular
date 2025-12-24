@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Output, signal} from '@angular/core';
+import {Component, EventEmitter, Input, Output, signal} from '@angular/core';
 import {TogglePlacesSortDirective} from './directives/toggle-places-sort.directive';
 import {MouseleaveDirective} from './directives/mouseleave.directive';
 import {SelectSortTypeDirective} from './directives/select-sort-type.directive';
@@ -14,6 +14,7 @@ import {SortType} from '../../core/constants/const';
   ]
 })
 export class PlacesSortingFormComponent {
+  @Input({required: true}) currentSortType!: SortType;
   @Output() sortTypeSelected = new EventEmitter<SortType>();
 
   public isSortFormOpen = signal<boolean>(false);
