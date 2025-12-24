@@ -1,5 +1,5 @@
-import {OfferPreview} from './offers';
-import {EntityState} from '@ngrx/entity';
+import { OfferPreview } from './offers';
+import { EntityState } from '@ngrx/entity';
 
 export interface OffersState extends EntityState<OfferPreview> {
   isLoading: boolean;
