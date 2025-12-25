@@ -1,10 +1,16 @@
-import {inject, Injectable} from '@angular/core';
-import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree,} from '@angular/router';
-import {filter, map, Observable, take} from 'rxjs';
-import {Store} from '@ngrx/store';
-import {AppState} from '../models/app.state';
-import {selectAuthStatus} from '../../store/app/selectors/app.selectors';
-import {AppRoute, AuthorizationStatus} from '../constants/const';
+import { inject, Injectable } from '@angular/core';
+import {
+  ActivatedRouteSnapshot,
+  CanActivate,
+  Router,
+  RouterStateSnapshot,
+  UrlTree,
+} from '@angular/router';
+import { filter, map, Observable, take } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { AppState } from '../models/app.state';
+import { selectAuthStatus } from '../../store/app/selectors/app.selectors';
+import { AppRoute, AuthorizationStatus } from '../constants/const';
 
 @Injectable({
   providedIn: 'root',
@@ -13,15 +19,22 @@ export class AuthGuard implements CanActivate {
   private store = inject(Store<AppState>);
   private router = inject(Router);
 
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot,): Observable<boolean | UrlTree> {
-    return this.store.select(selectAuthStatus)
-      .pipe(filter(status => status !== AuthorizationStatus.UNKNOWN), take(1),
-        map(status => {
-          if (status === AuthorizationStatus.AUTH) {
-            return true;
-          } else {
-            return this.router.createUrlTree([AppRoute.LOGIN], {queryParams: {redirectTo: state.url}});
-          }
-        }));
+  canActivate(
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot,
+  ): Observable<boolean | UrlTree> {
+    return this.store.select(selectAuthStatus).pipe(
+      filter((status) => status !== AuthorizationStatus.UNKNOWN),
+      take(1),
+      map((status) => {
+        if (status === AuthorizationStatus.AUTH) {
+          return true;
+        } else {
+          return this.router.createUrlTree([AppRoute.LOGIN], {
+            queryParams: { redirectTo: state.url },
+          });
+        }
+      }),
+    );
   }
 }

@@ -2,7 +2,7 @@
   <div class="container">
     <div class="header__wrapper">
       <div class="header__left">
-        <a class="header__logo-link header__logo-link--active">
+        <a class="header__logo-link header__logo-link--active" [routerLink]="[AppRoute.MAIN]">
           <img
             class="header__logo"
             src="img/logo.svg"
@@ -18,16 +18,23 @@
             <li class="header__nav-item user">
               <a class="header__nav-link header__nav-link--profile" href="#">
                 <div class="header__avatar-wrapper user__avatar-wrapper"></div>
-                <span class="header__user-name user__name"
-                >{{email()}}</span
-                >
+                <span class="header__user-name user__name">{{ email() }}</span>
                 <span class="header__favorite-count">3</span>
               </a>
             </li>
           }
           <li class="header__nav-item">
-            <a class="header__nav-link" [routerLink]="[authStatus() === AuthorizationStatus.AUTH ? null : AppRoute.LOGIN]">
-              <span class="header__signout">{{authStatus() === AuthorizationStatus.AUTH ? 'Sign out' : 'Login'}}</span>
+            <a
+              class="header__nav-link"
+              [routerLink]="[
+                authStatus() === AuthorizationStatus.AUTH
+                  ? ''
+                  : AppRoute.LOGIN,
+              ]"
+            >
+              <span class="header__signout">{{
+                authStatus() === AuthorizationStatus.AUTH ? "Sign out" : "Login"
+              }}</span>
             </a>
           </li>
         </ul>

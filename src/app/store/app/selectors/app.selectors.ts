@@ -1,6 +1,6 @@
-import {createFeatureSelector, createSelector} from '@ngrx/store';
-import {AppState} from '../../../core/models/app.state';
-import {offerAdapter} from '../../offer/offer.reducer';
+import { createFeatureSelector, createSelector } from '@ngrx/store';
+import { AppState } from '../../../core/models/app.state';
+import { offerAdapter } from '../../offer/offer.reducer';
 
 const selectOfferState = createFeatureSelector<AppState['offers']>('offers');
 const offerSelectors = offerAdapter.getSelectors();
@@ -19,9 +19,10 @@ export const selectIsOfferLoading = createSelector(
 
 export const selectUserEmail = createSelector(
   selectUserState,
-  (state) => state.user?.email);
+  (state) => state.user?.email,
+);
 
 export const selectAuthStatus = createSelector(
   selectUserState,
-  (state) => state.authorizationStatus
+  (state) => state.authorizationStatus,
 );

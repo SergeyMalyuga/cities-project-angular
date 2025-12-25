@@ -1,12 +1,14 @@
 .login__input {
-  &-email, &-password {
+  &-email,
+  &-password {
     position: relative;
     text-align: center;
   }
 }
 
 .login__error {
-  &--email, &--password {
+  &--email,
+  &--password {
     position: absolute;
     display: block;
     bottom: 3px;

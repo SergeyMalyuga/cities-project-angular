@@ -12,3 +12,16 @@ export const checkAuthStatusFailure = createAction(
   '[User Api] Check Auth Status Failure',
   props<{ error: string }>(),
 );
+
+export const login = createAction(
+  '[Login Page] Login',
+  props<{ email: string; password: string }>(),
+);
+export const loginSuccess = createAction(
+  '[User Api] Login Success',
+  props<{ user: User }>(),
+);
+export const loginFailure = createAction(
+  '[User Api] Login Failure',
+  props<{ error: string }>(),
+);

@@ -14,8 +14,11 @@ export class UserService {
     return this.http.get<User>(`${BASE_URL}/${APIRoute.LOGIN}`);
   }
 
-  public login(email: string, password: string) {
-    return this.http.post(`${BASE_URL}/${APIRoute.LOGIN}`, { email, password });
+  public login(email: string, password: string): Observable<User> {
+    return this.http.post<User>(`${BASE_URL}/${APIRoute.LOGIN}`, {
+      email,
+      password,
+    });
   }
 
   public logout(): Observable<void> {

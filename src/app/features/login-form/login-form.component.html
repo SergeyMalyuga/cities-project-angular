@@ -1,4 +1,10 @@
-<form [formGroup]="loginGroup" class="login__form form" action="#" method="post">
+<form
+  (ngSubmit)="onSubmit()"
+  [formGroup]="loginGroup"
+  class="login__form form"
+  action="#"
+  method="post"
+>
   <div class="login__input-email login__input-wrapper form__input-wrapper">
     <label for="email" class="visually-hidden">E-mail</label>
     <input
@@ -11,16 +17,20 @@
       required=""
     />
 
-    @if (loginGroup.get('email')?.touched && loginGroup.get('email')?.errors) {
-      @if (loginGroup.get('email')?.errors?.['email']) {
-        <div class="login__error login__error--email">Не корректный формат почты</div>
+    @if (loginGroup.get("email")?.touched && loginGroup.get("email")?.errors) {
+      @if (loginGroup.get("email")?.errors?.["email"]) {
+        <div class="login__error login__error--email">
+          Не корректный формат почты
+        </div>
       }
-      @if (loginGroup.get('email')?.errors?.['required']) {
-        <div class="login__error login__error--email">Почта обязательна для заполнения</div>
+      @if (loginGroup.get("email")?.errors?.["required"]) {
+        <div class="login__error login__error--email">
+          Почта обязательна для заполнения
+        </div>
       }
     }
   </div>
-  <div class="login__input-password  login__input-wrapper form__input-wrapper">
+  <div class="login__input-password login__input-wrapper form__input-wrapper">
     <label for="password" class="visually-hidden">Password</label>
     <input
       formControlName="password"
@@ -32,12 +42,18 @@
       required=""
     />
 
-    @if (loginGroup.get('password')?.touched && loginGroup.get('password')?.errors) {
-      @if (loginGroup.get('password')?.errors?.['pattern']) {
-        <div class="login__error login__error--password">Не корректный формат пароля</div>
+    @if (
+      loginGroup.get("password")?.touched && loginGroup.get("password")?.errors
+    ) {
+      @if (loginGroup.get("password")?.errors?.["pattern"]) {
+        <div class="login__error login__error--password">
+          Не корректный формат пароля
+        </div>
       }
-      @if (loginGroup.get('password')?.errors?.['required']) {
-        <div class="login__error login__error--password">Пароль обязательна для заполнения</div>
+      @if (loginGroup.get("password")?.errors?.["required"]) {
+        <div class="login__error login__error--password">
+          Пароль обязательна для заполнения
+        </div>
       }
     }
   </div>
