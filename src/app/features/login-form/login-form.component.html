@@ -57,7 +57,7 @@
       }
     }
   </div>
-  <button class="login__submit form__submit button" type="submit">
+  <button class="login__submit form__submit button" type="submit" [disabled]="loginGroup.invalid">
     Sign in
   </button>
 </form>

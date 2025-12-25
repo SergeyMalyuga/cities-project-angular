@@ -9,5 +9,5 @@ import { LoginFormComponent } from '../../features/login-form/login-form.compone
   imports: [RouterLink, LoginFormComponent],
 })
 export class LoginComponent {
-  protected readonly AppRoute = AppRoute;
+  public readonly AppRoute = AppRoute;
 }

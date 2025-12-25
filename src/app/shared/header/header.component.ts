@@ -8,16 +8,20 @@ import {
 } from '../../store/app/selectors/app.selectors';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { RouterLink } from '@angular/router';
+import { SignOutClickDirective } from './directives/sign-out-click.directive';
+import {logout} from '../../store/user/actions/user.actions';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  imports: [RouterLink],
+  imports: [RouterLink, SignOutClickDirective],
 })
 export class HeaderComponent implements OnInit {
   private store = inject(Store<AppState>);
   private destroyRef = inject(DestroyRef);
 
+  public readonly AppRoute = AppRoute;
+  public readonly AuthorizationStatus = AuthorizationStatus;
   public authStatus = signal<AuthorizationStatus>(AuthorizationStatus.UNKNOWN);
   public email = signal<string | undefined>(undefined);
 
@@ -33,6 +37,7 @@ export class HeaderComponent implements OnInit {
       .subscribe((email) => this.email.set(email));
   }
 
-  protected readonly AppRoute = AppRoute;
-  protected readonly AuthorizationStatus = AuthorizationStatus;
+  signOut() {
+    this.store.dispatch(logout());
+  }
 }

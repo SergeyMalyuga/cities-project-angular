@@ -2,7 +2,10 @@
   <div class="container">
     <div class="header__wrapper">
       <div class="header__left">
-        <a class="header__logo-link header__logo-link--active" [routerLink]="[AppRoute.MAIN]">
+        <a
+          class="header__logo-link header__logo-link--active"
+          [routerLink]="[AppRoute.MAIN]"
+        >
           <img
             class="header__logo"
             src="img/logo.svg"
@@ -26,10 +29,11 @@
           <li class="header__nav-item">
             <a
               class="header__nav-link"
+              appSignOutClick
+              [authStatus]="authStatus()"
+              (signOutClicked)="signOut()"
               [routerLink]="[
-                authStatus() === AuthorizationStatus.AUTH
-                  ? ''
-                  : AppRoute.LOGIN,
+                authStatus() === AuthorizationStatus.AUTH ? '' : AppRoute.LOGIN,
               ]"
             >
               <span class="header__signout">{{
