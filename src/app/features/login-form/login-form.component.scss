@@ -1,0 +1,17 @@
+.login__input {
+  &-email, &-password {
+    position: relative;
+    text-align: center;
+  }
+}
+
+.login__error {
+  &--email, &--password {
+    position: absolute;
+    display: block;
+    bottom: 3px;
+    left: 0;
+    width: 100%;
+    background-color: #ee6f3e;
+  }
+}
