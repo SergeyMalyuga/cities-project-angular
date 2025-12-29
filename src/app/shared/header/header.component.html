@@ -19,10 +19,10 @@
         <ul class="header__nav-list">
           @if (authStatus() === AuthorizationStatus.AUTH) {
             <li class="header__nav-item user">
-              <a class="header__nav-link header__nav-link--profile" href="#">
+              <a class="header__nav-link header__nav-link--profile" [routerLink]="[AppRoute.FAVORITES]">
                 <div class="header__avatar-wrapper user__avatar-wrapper"></div>
                 <span class="header__user-name user__name">{{ email() }}</span>
-                <span class="header__favorite-count">3</span>
+                <span class="header__favorite-count">{{offersAmount()}}</span>
               </a>
             </li>
           }
