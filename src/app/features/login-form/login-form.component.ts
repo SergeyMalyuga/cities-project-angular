@@ -26,7 +26,10 @@ export class LoginFormComponent {
     email: ['', [Validators.required, Validators.email]],
     password: [
       '',
-      [Validators.required, Validators.pattern('^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]+$')],
+      [
+        Validators.required,
+        Validators.pattern('^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]+$'),
+      ],
     ],
   });
 

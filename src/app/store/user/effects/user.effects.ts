@@ -50,7 +50,10 @@ export class UserEffects {
       ofType(UserActions.logout),
       switchMap(() => {
         return this.userService.logout().pipe(
-          map(() => {this.authService.removeToken(); return  UserActions.logoutSuccess()}),
+          map(() => {
+            this.authService.removeToken();
+            return UserActions.logoutSuccess();
+          }),
           catchError((error: HttpErrorResponse) =>
             of(UserActions.logoutFailure({ error: error.message })),
           ),

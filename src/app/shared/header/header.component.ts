@@ -9,7 +9,7 @@ import {
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { RouterLink } from '@angular/router';
 import { SignOutClickDirective } from './directives/sign-out-click.directive';
-import {logout} from '../../store/user/actions/user.actions';
+import { logout } from '../../store/user/actions/user.actions';
 
 @Component({
   selector: 'app-header',
