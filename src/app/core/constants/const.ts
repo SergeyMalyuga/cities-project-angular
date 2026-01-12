@@ -109,6 +109,11 @@ export const FavoriteClass = {
   PLACE_CARD: 'place-card__bookmark-button--active',
 } as const;
 
+export const FavoriteStatus = {
+  REMOVED: 0,
+  PLACE_CARD: 1,
+} as const;
+
 export type FavoriteClass = typeof FavoriteClass[keyof typeof FavoriteClass];
 
 export const QUANTITY_FIRST_OFFERS = 3;

@@ -11,6 +11,10 @@ import {FavoriteClass} from '../../core/constants/const';
 })
 export class OfferCardComponent {
   @Input({ required: true }) offer!: OfferPreview;
-  protected readonly Math = Math;
-  protected readonly FavoriteClass = FavoriteClass;
+  public readonly Math = Math;
+  public readonly FavoriteClass = FavoriteClass;
+
+/*  public onFavoriteToggled() {
+
+  }*/
 }
