@@ -31,4 +31,24 @@ export class FavoriteOfferEffects {
       ),
     ),
   );
+
+  changeFavoriteStatus$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(FavoriteActions.changeFavoriteStatus),
+      switchMap(({ offerId, status }) =>
+        this.favoriteOfferServicer.changeStatus(offerId, status).pipe(
+          map((favoriteOffer) =>
+            FavoriteActions.changeFavoriteStatusSuccess({ favoriteOffer }),
+          ),
+          catchError((error: HttpErrorResponse) =>
+            of(
+              FavoriteActions.changeFavoriteStatusFailure({
+                error: error.message,
+              }),
+            ),
+          ),
+        ),
+      ),
+    ),
+  );
 }

@@ -1,3 +1,4 @@
-import {FavoriteStatus} from '../constants/const';
+import { FavoriteStatus } from '../constants/const';
 
-export type FavoriteStatus = typeof FavoriteStatus[keyof typeof FavoriteStatus];
+export type FavoriteStatus =
+  (typeof FavoriteStatus)[keyof typeof FavoriteStatus];

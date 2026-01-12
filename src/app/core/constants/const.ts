@@ -111,10 +111,10 @@ export const FavoriteClass = {
 
 export const FavoriteStatus = {
   REMOVED: 0,
-  PLACE_CARD: 1,
+  ADDED: 1,
 } as const;
 
-export type FavoriteClass = typeof FavoriteClass[keyof typeof FavoriteClass];
+export type FavoriteClass = (typeof FavoriteClass)[keyof typeof FavoriteClass];
 
 export const QUANTITY_FIRST_OFFERS = 3;
 

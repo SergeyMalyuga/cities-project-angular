@@ -1,16 +1,24 @@
-import {Component, computed, DestroyRef, inject, OnInit, signal} from '@angular/core';
-import {Store} from '@ngrx/store';
-import {AppState} from '../../core/models/app.state';
-import {AppRoute, AuthorizationStatus} from '../../core/constants/const';
 import {
-  selectAuthStatus, selectFavoriteOffers,
+  Component,
+  computed,
+  DestroyRef,
+  inject,
+  OnInit,
+  signal,
+} from '@angular/core';
+import { Store } from '@ngrx/store';
+import { AppState } from '../../core/models/app.state';
+import { AppRoute, AuthorizationStatus } from '../../core/constants/const';
+import {
+  selectAuthStatus,
+  selectFavoriteOffers,
   selectUserEmail,
 } from '../../store/app/selectors/app.selectors';
-import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
-import {RouterLink} from '@angular/router';
-import {SignOutClickDirective} from './directives/sign-out-click.directive';
-import {logout} from '../../store/user/actions/user.actions';
-import {OfferPreview} from '../../core/models/offers';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { RouterLink } from '@angular/router';
+import { SignOutClickDirective } from './directives/sign-out-click.directive';
+import { logout } from '../../store/user/actions/user.actions';
+import { OfferPreview } from '../../core/models/offers';
 
 @Component({
   selector: 'app-header',
@@ -39,7 +47,10 @@ export class HeaderComponent implements OnInit {
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe((email) => this.email.set(email));
 
-    this.store.select(selectFavoriteOffers).pipe(takeUntilDestroyed(this.destroyRef)).subscribe(favoriteOffers => this.favoriteOffers.set(favoriteOffers));
+    this.store
+      .select(selectFavoriteOffers)
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe((favoriteOffers) => this.favoriteOffers.set(favoriteOffers));
   }
 
   signOut() {

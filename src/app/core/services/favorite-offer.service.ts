@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Offer, OfferPreview } from '../models/offers';
 import { APIRoute, BASE_URL } from '../constants/const';
-import {FavoriteStatus} from '../models/favorite-status';
+import { FavoriteStatus } from '../models/favorite-status';
 
 @Injectable({
   providedIn: 'root',
