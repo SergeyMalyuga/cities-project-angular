@@ -2,7 +2,7 @@ import {Component, DestroyRef, inject, Input, OnInit, signal} from '@angular/cor
 import {OfferPreview} from '../../core/models/offers';
 import {CapitalizePipe} from '../pipes/capitalize.pipe';
 import {ToggleFavoriteDirective} from '../directives/toggle-favorite.directive';
-import {AuthorizationStatus, FavoriteClass, FavoriteStatus} from '../../core/constants/const';
+import {AppRoute, AuthorizationStatus, FavoriteClass, FavoriteStatus} from '../../core/constants/const';
 import {Store} from '@ngrx/store';
 import {AppState} from '../../core/models/app.state';
 import {changeFavoriteStatus} from '../../store/favorite-offer/actions/favorite-offer.actions';
@@ -10,6 +10,7 @@ import {FavoriteStatus as FavoriteStatusType} from '../../core/models/favorite-s
 import {selectAuthStatus, selectIsFavoriteOfferLoading} from '../../store/app/selectors/app.selectors';
 import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
 import {filter} from 'rxjs';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-offer-card',
@@ -19,6 +20,7 @@ import {filter} from 'rxjs';
 export class OfferCardComponent implements OnInit {
   @Input({required: true}) offer!: OfferPreview;
   private destroyRef = inject(DestroyRef);
+  private router = inject(Router);
 
   public isFavoriteBtnDisable = signal<boolean>(false);
 
@@ -29,15 +31,20 @@ export class OfferCardComponent implements OnInit {
   public authStatus = signal<AuthorizationStatus>(AuthorizationStatus.UNKNOWN);
 
   ngOnInit(): void {
-    this.store.select(selectIsFavoriteOfferLoading).pipe(filter(isLoading => !isLoading), takeUntilDestroyed(this.destroyRef))
+    this.store.select(selectIsFavoriteOfferLoading).pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe((isLoading) => this.isFavoriteBtnDisable.set(isLoading));
     this.store.select(selectAuthStatus).pipe(takeUntilDestroyed(this.destroyRef)).subscribe((authStatus) => this.authStatus.set(authStatus));
   }
 
   public onFavoriteToggled() {
-    const status = +!this.offer.isFavorite;
-    if (this.isFavoriteStatus(status)) {
-      this.store.dispatch(changeFavoriteStatus({offerId: this.offer.id, status}))
+    if (this.authStatus() === AuthorizationStatus.AUTH) {
+      this.isFavoriteBtnDisable.set(true);
+      const status = +!this.offer.isFavorite;
+      if (this.isFavoriteStatus(status)) {
+        this.store.dispatch(changeFavoriteStatus({offerId: this.offer.id, status}))
+      }
+    } else {
+      this.router.navigate([AppRoute.LOGIN]);
     }
   }
 

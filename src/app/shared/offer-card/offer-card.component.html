@@ -23,6 +23,7 @@
       </div>
       <button
         appToggleFavorite
+        [authStatus]="authStatus()"
         (favoriteToggled)="onFavoriteToggled()"
         [favoriteClassName]="FavoriteClass.PLACE_CARD"
         class="place-card__bookmark-button button"
