@@ -25,8 +25,8 @@
       </section>
       <section class="locations locations--login locations--current">
         <div class="locations__item">
-          <a class="locations__item-link" href="#">
-            <span>{{randomLocation().name}}</span>
+          <a appSelectCity [city]="randomLocation()" class="locations__item-link" href="#">
+            <span>{{ randomLocation().name }}</span>
           </a>
         </div>
       </section>
