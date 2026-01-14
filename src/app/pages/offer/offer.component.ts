@@ -9,10 +9,11 @@ import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
 import {catchError, forkJoin, of, switchMap} from 'rxjs';
 import {AuthorizationStatus} from '../../core/constants/const';
 import {selectAuthStatus} from '../../store/app/selectors/app.selectors';
+import {LoaderComponent} from '../../shared/loader/loader.component';
 
 @Component({
   selector: 'app-offer',
-  imports: [HeaderComponent],
+  imports: [HeaderComponent, LoaderComponent],
   templateUrl: './offer.component.html',
 })
 export class OfferComponent implements OnInit {
