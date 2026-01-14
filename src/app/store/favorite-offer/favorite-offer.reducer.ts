@@ -1,9 +1,11 @@
-import {createEntityAdapter} from '@ngrx/entity';
-import {OfferPreview} from '../../core/models/offers';
-import {FavoriteOffersState} from '../../core/models/favorite-offers.state';
-import {createReducer, on} from '@ngrx/store';
+import { createEntityAdapter } from '@ngrx/entity';
+import { OfferPreview } from '../../core/models/offers';
+import { FavoriteOffersState } from '../../core/models/favorite-offers.state';
+import { createReducer, on } from '@ngrx/store';
 import {
-  changeFavoriteStatus, changeFavoriteStatusFailure, changeFavoriteStatusSuccess,
+  changeFavoriteStatus,
+  changeFavoriteStatusFailure,
+  changeFavoriteStatusSuccess,
   loadFavoriteOffers,
   loadFavoriteOffersFailure,
   loadFavoriteOffersSuccess,
@@ -21,29 +23,40 @@ export const favoriteOfferReducer = createReducer(
     ...state,
     isLoading: true,
   })),
-  on(loadFavoriteOffersSuccess, (state, {favoriteOffers}) =>
+  on(loadFavoriteOffersSuccess, (state, { favoriteOffers }) =>
     favoriteOfferAdapter.setAll(favoriteOffers, {
       ...state,
       isLoading: false,
       error: null,
     }),
   ),
-  on(loadFavoriteOffersFailure, (state, {error}) => ({
+  on(loadFavoriteOffersFailure, (state, { error }) => ({
     ...state,
     isLoading: false,
     error,
   })),
-  on(changeFavoriteStatus, state => ({
-    ...state, isLoading: true
+  on(changeFavoriteStatus, (state) => ({
+    ...state,
+    isLoading: true,
   })),
-  on(changeFavoriteStatusSuccess, (state, {favoriteOffer}) => {
+  on(changeFavoriteStatusSuccess, (state, { favoriteOffer }) => {
     if (favoriteOffer.isFavorite) {
-      return favoriteOfferAdapter.addOne(favoriteOffer, {...state, isLoading: false, error: null});
+      return favoriteOfferAdapter.addOne(favoriteOffer, {
+        ...state,
+        isLoading: false,
+        error: null,
+      });
     } else {
-      return favoriteOfferAdapter.removeOne(favoriteOffer.id, {...state, isLoading: false, error: null});
+      return favoriteOfferAdapter.removeOne(favoriteOffer.id, {
+        ...state,
+        isLoading: false,
+        error: null,
+      });
     }
   }),
-  on(changeFavoriteStatusFailure, (state, {error}) => ({
-    ...state, isLoading: false, error
-  }))
+  on(changeFavoriteStatusFailure, (state, { error }) => ({
+    ...state,
+    isLoading: false,
+    error,
+  })),
 );

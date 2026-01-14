@@ -4,44 +4,15 @@
     <section class="offer">
       <div class="offer__gallery-container container">
         <div class="offer__gallery">
-          <div class="offer__image-wrapper">
-            <img class="offer__image" src="img/room.jpg" alt="Photo studio" />
-          </div>
-          <div class="offer__image-wrapper">
-            <img
-              class="offer__image"
-              src="img/apartment-01.jpg"
-              alt="Photo studio"
-            />
-          </div>
-          <div class="offer__image-wrapper">
-            <img
-              class="offer__image"
-              src="img/apartment-02.jpg"
-              alt="Photo studio"
-            />
-          </div>
-          <div class="offer__image-wrapper">
-            <img
-              class="offer__image"
-              src="img/apartment-03.jpg"
-              alt="Photo studio"
-            />
-          </div>
-          <div class="offer__image-wrapper">
-            <img
-              class="offer__image"
-              src="img/studio-01.jpg"
-              alt="Photo studio"
-            />
-          </div>
-          <div class="offer__image-wrapper">
-            <img
-              class="offer__image"
-              src="img/apartment-01.jpg"
-              alt="Photo studio"
-            />
-          </div>
+          @for (image of offer()?.images; track image) {
+            <div class="offer__image-wrapper">
+              <img
+                class="offer__image"
+                src="{{image}}"
+                alt="Photo studio"
+              />
+            </div>
+          }
         </div>
       </div>
       <div class="offer__container container">
