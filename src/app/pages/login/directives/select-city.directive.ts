@@ -8,8 +8,9 @@ export class SelectCityDirective {
   @Output() citySelected = new EventEmitter<City>();
   @Input({required: true}) city!: City;
 
-  @HostListener('click')
-  selectCity() {
+  @HostListener('click', ['$event'])
+  selectCity(evt: MouseEvent): void {
+    evt.preventDefault();
     this.citySelected.emit(this.city);
   }
 }
