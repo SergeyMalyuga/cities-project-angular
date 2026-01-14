@@ -1,5 +1,5 @@
-import { createAction, props } from '@ngrx/store';
-import { OfferPreview } from '../../../core/models/offers';
+import {createAction, props} from '@ngrx/store';
+import {OfferPreview} from '../../../core/models/offers';
 
 export const loadOffers = createAction('[App Component] Load Offers');
 export const loadOffersSuccess = createAction(

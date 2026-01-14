@@ -1,11 +1,5 @@
-import {
-  Directive,
-  EventEmitter,
-  HostListener,
-  Input,
-  Output,
-} from '@angular/core';
-import { AuthorizationStatus } from '../../../core/constants/const';
+import {Directive, EventEmitter, HostListener, Input, Output,} from '@angular/core';
+import {AuthorizationStatus} from '../../../core/constants/const';
 
 @Directive({
   selector: '[appSignOutClick]',

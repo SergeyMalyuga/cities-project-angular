@@ -1,12 +1,5 @@
-import {
-  Directive,
-  EventEmitter,
-  HostBinding,
-  HostListener,
-  Input,
-  Output,
-} from '@angular/core';
-import { City } from '../../../core/models/city';
+import {Directive, EventEmitter, HostBinding, HostListener, Input, Output,} from '@angular/core';
+import {City} from '../../../core/models/city';
 
 @Directive({
   selector: '[appSelectCity]',

@@ -1,11 +1,5 @@
-import {
-  Directive,
-  EventEmitter,
-  HostListener,
-  Input,
-  Output,
-} from '@angular/core';
-import { AuthorizationStatus, FavoriteClass } from '../../core/constants/const';
+import {Directive, EventEmitter, HostListener, Input, Output,} from '@angular/core';
+import {AuthorizationStatus, FavoriteClass} from '../../core/constants/const';
 
 @Directive({
   selector: '[appToggleFavorite]',

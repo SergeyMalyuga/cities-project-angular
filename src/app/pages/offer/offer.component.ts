@@ -10,10 +10,11 @@ import {catchError, forkJoin, of, switchMap} from 'rxjs';
 import {AuthorizationStatus} from '../../core/constants/const';
 import {selectAuthStatus} from '../../store/app/selectors/app.selectors';
 import {LoaderComponent} from '../../shared/loader/loader.component';
+import {CapitalizePipe} from '../../shared/pipes/capitalize.pipe';
 
 @Component({
   selector: 'app-offer',
-  imports: [HeaderComponent, LoaderComponent],
+  imports: [HeaderComponent, LoaderComponent, CapitalizePipe],
   templateUrl: './offer.component.html',
 })
 export class OfferComponent implements OnInit {
@@ -22,7 +23,7 @@ export class OfferComponent implements OnInit {
   private route = inject(ActivatedRoute);
   private destroyRef = inject(DestroyRef);
 
-  public offer = signal<Offer| undefined>(undefined);
+  public offer = signal<Offer | undefined>(undefined);
   public offerId = signal<string | null>(null);
   public authStatus = signal<AuthorizationStatus>(AuthorizationStatus.UNKNOWN);
 
@@ -46,6 +47,11 @@ export class OfferComponent implements OnInit {
         this.offer.set(result?.offer);
       });
 
-    this.store.select(selectAuthStatus).pipe(takeUntilDestroyed(this.destroyRef)).subscribe(status => this.authStatus.set(status));
+    this.store
+      .select(selectAuthStatus)
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe((status) => this.authStatus.set(status));
   }
+
+  protected readonly Math = Math;
 }

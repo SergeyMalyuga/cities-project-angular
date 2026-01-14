@@ -1,11 +1,5 @@
-import {
-  Directive,
-  EventEmitter,
-  HostListener,
-  Input,
-  Output,
-} from '@angular/core';
-import { SortType } from '../../../core/constants/const';
+import {Directive, EventEmitter, HostListener, Input, Output,} from '@angular/core';
+import {SortType} from '../../../core/constants/const';
 
 @Directive({
   selector: '[appSelectSortType]',
