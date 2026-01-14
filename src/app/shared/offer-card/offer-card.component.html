@@ -5,7 +5,7 @@
     </div>
   }
   <div class="cities__image-wrapper place-card__image-wrapper">
-    <a href="#">
+    <a [routerLink]="[AppRoute.OFFER, offer.id]">
       <img
         class="place-card__image"
         src="{{ offer.previewImage }}"
@@ -46,7 +46,7 @@
       </div>
     </div>
     <h2 class="place-card__name">
-      <a href="#">{{ offer.title }}</a>
+      <a [routerLink]="[AppRoute.OFFER, offer.id]">{{ offer.title }}</a>
     </h2>
     <p class="place-card__type">{{ offer.type | capitalize }}</p>
   </div>

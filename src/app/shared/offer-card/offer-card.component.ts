@@ -9,13 +9,12 @@ import {changeFavoriteStatus} from '../../store/favorite-offer/actions/favorite-
 import {FavoriteStatus as FavoriteStatusType} from '../../core/models/favorite-status';
 import {selectAuthStatus, selectIsFavoriteOfferLoading} from '../../store/app/selectors/app.selectors';
 import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
-import {filter} from 'rxjs';
-import {Router} from '@angular/router';
+import {Router, RouterLink} from '@angular/router';
 
 @Component({
   selector: 'app-offer-card',
   templateUrl: './offer-card.component.html',
-  imports: [CapitalizePipe, ToggleFavoriteDirective],
+  imports: [CapitalizePipe, ToggleFavoriteDirective, RouterLink],
 })
 export class OfferCardComponent implements OnInit {
   @Input({required: true}) offer!: OfferPreview;
@@ -51,4 +50,6 @@ export class OfferCardComponent implements OnInit {
   private isFavoriteStatus(value: unknown): value is FavoriteStatusType {
     return FavoriteStatus.ADDED === value || FavoriteStatus.REMOVED === value;
   }
+
+  protected readonly AppRoute = AppRoute;
 }
