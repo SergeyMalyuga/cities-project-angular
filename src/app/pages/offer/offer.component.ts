@@ -12,6 +12,8 @@ import {selectAuthStatus} from '../../store/app/selectors/app.selectors';
 import {LoaderComponent} from '../../shared/loader/loader.component';
 import {CapitalizePipe} from '../../shared/pipes/capitalize.pipe';
 import {ReviewFormComponent} from '../../features/review-form/review-form.component';
+import {CommentService} from '../../core/services/comment.service';
+import {Comment} from '../../core/models/comments';
 
 @Component({
   selector: 'app-offer',
@@ -23,10 +25,14 @@ export class OfferComponent implements OnInit {
   private offerService = inject(OfferApiService);
   private route = inject(ActivatedRoute);
   private destroyRef = inject(DestroyRef);
+  private commentService = inject(CommentService);
 
   public offer = signal<Offer | undefined>(undefined);
   public offerId = signal<string | null>(null);
   public authStatus = signal<AuthorizationStatus>(AuthorizationStatus.UNKNOWN);
+  public comments = signal<Comment[]>([]);
+  public readonly Math = Math;
+  public readonly AuthorizationStatus = AuthorizationStatus;
 
   ngOnInit(): void {
     this.route.paramMap
@@ -40,12 +46,14 @@ export class OfferComponent implements OnInit {
           this.offerId.set(id);
           return forkJoin({
             offer: this.offerService.getOfferById(id),
+            comments: this.commentService.getComments(id)
           });
         }),
       )
       .pipe(catchError(() => of(null)))
       .subscribe((result) => {
         this.offer.set(result?.offer);
+        this.comments.set(result?.comments ?? []);
       });
 
     this.store
@@ -53,7 +61,4 @@ export class OfferComponent implements OnInit {
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe((status) => this.authStatus.set(status));
   }
-
-  protected readonly Math = Math;
-  protected readonly AuthorizationStatus = AuthorizationStatus;
 }

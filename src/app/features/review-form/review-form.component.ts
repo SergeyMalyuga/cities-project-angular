@@ -10,8 +10,10 @@ import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/
 })
 export class ReviewFormComponent {
   private formBuilder = inject(FormBuilder);
+
   public reviewForm: FormGroup = this.formBuilder.group({
-    rating : ['', [Validators.required]],
-    comments : ['', [Validators.required, Validators.minLength(50), Validators.max(360)]],
+    rating: ['', [Validators.required]],
+    comments: ['', [Validators.required, Validators.minLength(50), Validators.max(360)]],
   })
+
 }
