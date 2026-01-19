@@ -35,7 +35,7 @@
               appSignOutClick
               [authStatus]="authStatus()"
               (signOutClicked)="signOut()"
-              [routerLink]="[
+              [routerLink]="['/',
                 authStatus() === AuthorizationStatus.AUTH ? '' : AppRoute.LOGIN,
               ]"
             >

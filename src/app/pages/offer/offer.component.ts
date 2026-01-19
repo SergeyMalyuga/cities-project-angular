@@ -11,10 +11,11 @@ import {AuthorizationStatus} from '../../core/constants/const';
 import {selectAuthStatus} from '../../store/app/selectors/app.selectors';
 import {LoaderComponent} from '../../shared/loader/loader.component';
 import {CapitalizePipe} from '../../shared/pipes/capitalize.pipe';
+import {ReviewFormComponent} from '../../features/review-form/review-form.component';
 
 @Component({
   selector: 'app-offer',
-  imports: [HeaderComponent, LoaderComponent, CapitalizePipe],
+  imports: [HeaderComponent, LoaderComponent, CapitalizePipe, ReviewFormComponent],
   templateUrl: './offer.component.html',
 })
 export class OfferComponent implements OnInit {
@@ -54,4 +55,5 @@ export class OfferComponent implements OnInit {
   }
 
   protected readonly Math = Math;
+  protected readonly AuthorizationStatus = AuthorizationStatus;
 }
