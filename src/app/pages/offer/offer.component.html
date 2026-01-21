@@ -97,7 +97,7 @@
             </div>
             <section class="offer__reviews reviews">
               <h2 class="reviews__title">
-                Reviews &middot; <span class="reviews__amount">1</span>
+                Reviews &middot; <span class="reviews__amount">{{amountComments()}}</span>
               </h2>
               <ul class="reviews__list">
                 @for (comment of comments() | sortByDate; track comment.id) {
@@ -124,8 +124,8 @@
                       <p class="reviews__text">
                         {{ comment.comment }}
                       </p>
-                      <time class="reviews__time" datetime="2019-04-24"
-                      >{{comment.date | formatMonthYear}}
+                      <time class="reviews__time" [attr.datetime]="comment.date | formatIsoDate"
+                      >{{ comment.date | formatMonthYear }}
                       </time>
                     </div>
                   </li>
