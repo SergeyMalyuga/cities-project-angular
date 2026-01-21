@@ -100,7 +100,7 @@
                 Reviews &middot; <span class="reviews__amount">1</span>
               </h2>
               <ul class="reviews__list">
-                @for (comment of comments(); track comment.id) {
+                @for (comment of comments() | sortByDate; track comment.id) {
                   <li class="reviews__item">
                     <div class="reviews__user user">
                       <div class="reviews__avatar-wrapper user__avatar-wrapper">
@@ -132,7 +132,7 @@
                 }
               </ul>
               @if (authStatus() === AuthorizationStatus.AUTH) {
-                <app-review-form [offerId]="offerId()"/>
+                <app-review-form (commentAdded)="onCommentAdded($event)" [offerId]="offerId()"/>
               }
             </section>
           </div>

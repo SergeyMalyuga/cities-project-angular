@@ -14,10 +14,11 @@ import {CapitalizePipe} from '../../shared/pipes/capitalize.pipe';
 import {ReviewFormComponent} from '../../features/review-form/review-form.component';
 import {CommentService} from '../../core/services/comment.service';
 import {Comment} from '../../core/models/comments';
+import {SortByDatePipe} from './pipes/sort-by-date.pipe';
 
 @Component({
   selector: 'app-offer',
-  imports: [HeaderComponent, LoaderComponent, CapitalizePipe, ReviewFormComponent],
+  imports: [HeaderComponent, LoaderComponent, CapitalizePipe, ReviewFormComponent, SortByDatePipe],
   templateUrl: './offer.component.html',
 })
 export class OfferComponent implements OnInit {
@@ -60,5 +61,10 @@ export class OfferComponent implements OnInit {
       .select(selectAuthStatus)
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe((status) => this.authStatus.set(status));
+  }
+
+  public onCommentAdded(comment: Comment) {
+    this.comments.update(comments => [comment, ...comments]
+    )
   }
 }

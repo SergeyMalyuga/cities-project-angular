@@ -21,14 +21,22 @@ export class ReviewFormComponent {
 
   public reviewForm: FormGroup = this.formBuilder.group({
     rating: ['', [Validators.required]],
-    comments: ['', [Validators.required, Validators.minLength(50), Validators.max(360)]],
+    comments: ['', [Validators.required, Validators.minLength(50), Validators.maxLength(360)]],
   })
 
   public onSubmit() {
     if (this.reviewForm.valid && this.offerId) {
       const {rating, comments} = this.reviewForm.value;
       this.commentService.postComment(this.offerId, Number(rating), comments).pipe(takeUntilDestroyed(this.destroyRef))
-        .subscribe(comment => {this.commentAdded.emit(comment); this.reviewForm.reset()});
+        .subscribe({
+          next: comment => {
+            this.commentAdded.emit(comment);
+            this.reviewForm.reset();
+          },
+          error: error => {
+            console.error('Comment submission failed', error)
+          },
+        });
     }
   }
 }
