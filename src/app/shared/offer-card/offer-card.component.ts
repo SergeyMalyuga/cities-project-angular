@@ -2,14 +2,13 @@ import {Component, DestroyRef, inject, Input, OnInit, signal,} from '@angular/co
 import {OfferPreview} from '../../core/models/offers';
 import {CapitalizePipe} from '../pipes/capitalize.pipe';
 import {ToggleFavoriteDirective} from '../directives/toggle-favorite.directive';
-import {AppRoute, AuthorizationStatus, FavoriteClass, FavoriteStatus,} from '../../core/constants/const';
+import {AppRoute, AuthorizationStatus, FavoriteClass,} from '../../core/constants/const';
 import {Store} from '@ngrx/store';
 import {AppState} from '../../core/models/app.state';
-import {changeFavoriteStatus} from '../../store/favorite-offer/actions/favorite-offer.actions';
-import {FavoriteStatus as FavoriteStatusType} from '../../core/models/favorite-status';
 import {selectAuthStatus, selectIsFavoriteOfferLoading,} from '../../store/app/selectors/app.selectors';
 import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
-import {Router, RouterLink} from '@angular/router';
+import {RouterLink} from '@angular/router';
+import {FavoriteOfferService} from '../../core/services/favorite-offer.service';
 
 @Component({
   selector: 'app-offer-card',
@@ -17,9 +16,9 @@ import {Router, RouterLink} from '@angular/router';
   imports: [CapitalizePipe, ToggleFavoriteDirective, RouterLink],
 })
 export class OfferCardComponent implements OnInit {
-  @Input({ required: true }) offer!: OfferPreview;
+  @Input({required: true}) offer!: OfferPreview;
   private destroyRef = inject(DestroyRef);
-  private router = inject(Router);
+  private favoriteOfferService = inject(FavoriteOfferService)
 
   public isFavoriteBtnDisable = signal<boolean>(false);
 
@@ -41,21 +40,8 @@ export class OfferCardComponent implements OnInit {
   }
 
   public onFavoriteToggled() {
-    if (this.authStatus() === AuthorizationStatus.AUTH) {
-      this.isFavoriteBtnDisable.set(true);
-      const status = +!this.offer.isFavorite;
-      if (this.isFavoriteStatus(status)) {
-        this.store.dispatch(
-          changeFavoriteStatus({ offerId: this.offer.id, status }),
-        );
-      }
-    } else {
-      this.router.navigate([AppRoute.LOGIN]);
-    }
-  }
-
-  private isFavoriteStatus(value: unknown): value is FavoriteStatusType {
-    return FavoriteStatus.ADDED === value || FavoriteStatus.REMOVED === value;
+    this.isFavoriteBtnDisable.set(true);
+    this.favoriteOfferService.changeStatus(this.authStatus(), this.offer);
   }
 
   protected readonly AppRoute = AppRoute;

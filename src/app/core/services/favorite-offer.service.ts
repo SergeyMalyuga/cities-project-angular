@@ -1,24 +1,34 @@
 import {inject, Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs';
-import {Offer, OfferPreview} from '../models/offers';
-import {APIRoute, BASE_URL} from '../constants/const';
-import {FavoriteStatus} from '../models/favorite-status';
+import {changeFavoriteStatus} from '../../store/favorite-offer/actions/favorite-offer.actions';
+import {FavoriteStatus as FavoriteStatusType} from '../models/favorite-status';
+import {AppRoute, AuthorizationStatus, FavoriteStatus} from '../constants/const';
+import {OfferPreview} from '../models/offers';
+import {Store} from '@ngrx/store';
+import {AppState} from '../models/app.state';
+import {Router} from '@angular/router';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class FavoriteOfferService {
-  private http = inject(HttpClient);
+  private store = inject(Store<AppState>)
+  private router = inject(Router);
 
-  getFavoriteOffers(): Observable<OfferPreview[]> {
-    return this.http.get<OfferPreview[]>(`${BASE_URL}/${APIRoute.FAVORITE}`);
+  public changeStatus(authStatus: AuthorizationStatus, offer: OfferPreview) {
+    if (authStatus === AuthorizationStatus.AUTH) {
+      const status = +!offer.isFavorite;
+      if (this.isFavoriteStatus(status)) {
+        this.store.dispatch(
+          changeFavoriteStatus({offerId: offer.id, status}),
+        );
+      }
+    } else {
+      this.router.navigate([AppRoute.LOGIN]);
+    }
   }
 
-  changeStatus(offerId: string, status: FavoriteStatus): Observable<Offer> {
-    return this.http.post<Offer>(
-      `${BASE_URL}/${APIRoute.FAVORITE}/${offerId}/${status}`,
-      {},
-    );
+  private isFavoriteStatus(value: number): value is FavoriteStatusType {
+    return FavoriteStatus.ADDED === value || FavoriteStatus.REMOVED === value;
   }
 }
+

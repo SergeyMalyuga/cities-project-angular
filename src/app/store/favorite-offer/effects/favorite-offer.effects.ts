@@ -1,6 +1,6 @@
 import {inject, Injectable} from '@angular/core';
 import {Actions, createEffect, ofType} from '@ngrx/effects';
-import {FavoriteOfferService} from '../../../core/services/favorite-offer.service';
+import {FavoriteOfferApiService} from '../../../core/services/favorite-offer-api.service';
 import * as FavoriteActions from '../actions/favorite-offer.actions';
 import {catchError, map, of, switchMap} from 'rxjs';
 import {HttpErrorResponse} from '@angular/common/http';
@@ -10,7 +10,7 @@ import {HttpErrorResponse} from '@angular/common/http';
 })
 export class FavoriteOfferEffects {
   private actions$ = inject(Actions);
-  private favoriteOfferServicer = inject(FavoriteOfferService);
+  private favoriteOfferServicer = inject(FavoriteOfferApiService);
 
   loadFavoriteOffers$ = createEffect(() =>
     this.actions$.pipe(
