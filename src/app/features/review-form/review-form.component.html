@@ -1,4 +1,4 @@
-<form [formGroup]="reviewForm" class="reviews__form form" action="#" method="post">
+<form (ngSubmit)="onSubmit()" [formGroup]="reviewForm" class="reviews__form form" action="#" method="post">
   <label class="reviews__label form__label" for="review"
   >Your review</label
   >

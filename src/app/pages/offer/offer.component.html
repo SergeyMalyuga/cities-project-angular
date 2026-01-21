@@ -132,7 +132,7 @@
                 }
               </ul>
               @if (authStatus() === AuthorizationStatus.AUTH) {
-                <app-review-form/>
+                <app-review-form [offerId]="offerId()"/>
               }
             </section>
           </div>
