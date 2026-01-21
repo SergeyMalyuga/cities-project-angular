@@ -15,10 +15,11 @@ import {ReviewFormComponent} from '../../features/review-form/review-form.compon
 import {CommentService} from '../../core/services/comment.service';
 import {Comment} from '../../core/models/comments';
 import {SortByDatePipe} from './pipes/sort-by-date.pipe';
+import {FormatMonthYearPipe} from '../../features/places-sorting-form/pipes/format-month-year.pipe';
 
 @Component({
   selector: 'app-offer',
-  imports: [HeaderComponent, LoaderComponent, CapitalizePipe, ReviewFormComponent, SortByDatePipe],
+  imports: [HeaderComponent, LoaderComponent, CapitalizePipe, ReviewFormComponent, SortByDatePipe, FormatMonthYearPipe],
   templateUrl: './offer.component.html',
 })
 export class OfferComponent implements OnInit {
