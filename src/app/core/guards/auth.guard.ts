@@ -1,10 +1,16 @@
-import {inject, Injectable} from '@angular/core';
-import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree,} from '@angular/router';
-import {filter, map, Observable, take} from 'rxjs';
-import {Store} from '@ngrx/store';
-import {AppState} from '../models/app.state';
-import {selectAuthStatus} from '../../store/app/selectors/app.selectors';
-import {AppRoute, AuthorizationStatus} from '../constants/const';
+import { inject, Injectable } from '@angular/core';
+import {
+  ActivatedRouteSnapshot,
+  CanActivate,
+  Router,
+  RouterStateSnapshot,
+  UrlTree,
+} from '@angular/router';
+import { filter, map, Observable, take } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { AppState } from '../models/app.state';
+import { selectAuthStatus } from '../../store/app/selectors/app.selectors';
+import { AppRoute, AuthorizationStatus } from '../constants/const';
 
 @Injectable({
   providedIn: 'root',

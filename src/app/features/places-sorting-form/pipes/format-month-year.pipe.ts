@@ -1,11 +1,11 @@
-import {Pipe, PipeTransform} from '@angular/core';
+import { Pipe, PipeTransform } from '@angular/core';
 import dayjs from 'dayjs';
 
 @Pipe({
-  name: 'formatMonthYear'
+  name: 'formatMonthYear',
 })
 export class FormatMonthYearPipe implements PipeTransform {
-    transform(value: string) {
-        return dayjs(value).format('MMMM YYYY');
-    }
+  transform(value: string) {
+    return dayjs(value).format('MMMM YYYY');
+  }
 }

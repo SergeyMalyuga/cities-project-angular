@@ -1,19 +1,23 @@
-import {Component, DestroyRef, inject, OnInit, signal} from '@angular/core';
-import {HeaderComponent} from '../../shared/header/header.component';
-import {Store} from '@ngrx/store';
-import {AppState} from '../../core/models/app.state';
-import {OfferPreview} from '../../core/models/offers';
-import {selectCity, selectIsOfferLoading, selectOffers,} from '../../store/app/selectors/app.selectors';
-import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
-import {OfferCardComponent} from '../../shared/offer-card/offer-card.component';
-import {SelectCityDirective} from './directives/select-city.directive';
-import {CityName, DEFAULT_CITY, SortType} from '../../core/constants/const';
-import {CityByNamePipe} from './pipes/city-by-name.pipe';
-import {City} from '../../core/models/city';
-import {OffersByCityPipe} from './pipes/offers-by-city.pipe';
-import {LoaderComponent} from '../../shared/loader/loader.component';
-import {PlacesSortingFormComponent} from '../../features/places-sorting-form/places-sorting-form.component';
-import {SortByPipe} from '../../features/places-sorting-form/pipes/sort-by.pipe';
+import { Component, DestroyRef, inject, OnInit, signal } from '@angular/core';
+import { HeaderComponent } from '../../shared/header/header.component';
+import { Store } from '@ngrx/store';
+import { AppState } from '../../core/models/app.state';
+import { OfferPreview } from '../../core/models/offers';
+import {
+  selectCity,
+  selectIsOfferLoading,
+  selectOffers,
+} from '../../store/app/selectors/app.selectors';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { OfferCardComponent } from '../../shared/offer-card/offer-card.component';
+import { SelectCityDirective } from './directives/select-city.directive';
+import { CityName, DEFAULT_CITY, SortType } from '../../core/constants/const';
+import { CityByNamePipe } from './pipes/city-by-name.pipe';
+import { City } from '../../core/models/city';
+import { OffersByCityPipe } from './pipes/offers-by-city.pipe';
+import { LoaderComponent } from '../../shared/loader/loader.component';
+import { PlacesSortingFormComponent } from '../../features/places-sorting-form/places-sorting-form.component';
+import { SortByPipe } from '../../features/places-sorting-form/pipes/sort-by.pipe';
 
 @Component({
   selector: 'app-main',

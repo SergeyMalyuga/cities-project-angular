@@ -1,4 +1,4 @@
-import {OfferPreview} from './offers';
+import { OfferPreview } from './offers';
 
 export interface SortedFavoriteOffers {
   paris: OfferPreview[];

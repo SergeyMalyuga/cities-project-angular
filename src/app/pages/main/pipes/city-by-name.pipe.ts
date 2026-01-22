@@ -1,5 +1,5 @@
-import {Pipe, PipeTransform} from '@angular/core';
-import {CITY_LOCATIONS, DEFAULT_CITY} from '../../../core/constants/const';
+import { Pipe, PipeTransform } from '@angular/core';
+import { CITY_LOCATIONS, DEFAULT_CITY } from '../../../core/constants/const';
 
 @Pipe({
   name: 'cityByName',

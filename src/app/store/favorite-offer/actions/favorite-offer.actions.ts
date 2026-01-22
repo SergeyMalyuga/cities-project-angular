@@ -1,6 +1,6 @@
-import {createAction, props} from '@ngrx/store';
-import {Offer, OfferPreview} from '../../../core/models/offers';
-import {FavoriteStatus} from '../../../core/models/favorite-status';
+import { createAction, props } from '@ngrx/store';
+import { Offer, OfferPreview } from '../../../core/models/offers';
+import { FavoriteStatus } from '../../../core/models/favorite-status';
 
 export const loadFavoriteOffers = createAction(
   '[Main page] Load Favorite Offers',

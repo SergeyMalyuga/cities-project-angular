@@ -1,10 +1,10 @@
-import {inject, Injectable} from '@angular/core';
-import {Actions, createEffect, ofType} from '@ngrx/effects';
-import {UserService} from '../../../core/services/user.service';
+import { inject, Injectable } from '@angular/core';
+import { Actions, createEffect, ofType } from '@ngrx/effects';
+import { UserService } from '../../../core/services/user.service';
 import * as UserActions from '../actions/user.actions';
-import {catchError, map, of, switchMap} from 'rxjs';
-import {HttpErrorResponse} from '@angular/common/http';
-import {AuthService} from '../../../core/services/auth.service';
+import { catchError, map, of, switchMap } from 'rxjs';
+import { HttpErrorResponse } from '@angular/common/http';
+import { AuthService } from '../../../core/services/auth.service';
 
 @Injectable({
   providedIn: 'root',

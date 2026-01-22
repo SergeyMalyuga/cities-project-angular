@@ -1,9 +1,9 @@
-import {inject, Injectable} from '@angular/core';
-import {Actions, createEffect, ofType} from '@ngrx/effects';
-import {FavoriteOfferApiService} from '../../../core/services/favorite-offer-api.service';
+import { inject, Injectable } from '@angular/core';
+import { Actions, createEffect, ofType } from '@ngrx/effects';
+import { FavoriteOfferApiService } from '../../../core/services/favorite-offer-api.service';
 import * as FavoriteActions from '../actions/favorite-offer.actions';
-import {catchError, map, of, switchMap} from 'rxjs';
-import {HttpErrorResponse} from '@angular/common/http';
+import { catchError, map, of, switchMap } from 'rxjs';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',

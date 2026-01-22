@@ -1,8 +1,8 @@
-import {inject, Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs';
-import {Offer, OfferPreview} from '../models/offers';
-import {APIRoute, BASE_URL} from '../constants/const';
+import { inject, Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { Offer, OfferPreview } from '../models/offers';
+import { APIRoute, BASE_URL } from '../constants/const';
 
 @Injectable({
   providedIn: 'root',
@@ -14,7 +14,7 @@ export class OfferApiService {
     return this.http.get<OfferPreview[]>(`${BASE_URL}/${APIRoute.OFFERS}`);
   }
 
-  public getOfferById(offerId: string): Observable<Offer> {
+  public getOfferById(offerId: string | null): Observable<Offer> {
     return this.http.get<Offer>(`${BASE_URL}/${APIRoute.OFFERS}/${offerId}`);
   }
 

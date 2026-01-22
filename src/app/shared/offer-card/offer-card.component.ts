@@ -1,14 +1,28 @@
-import {Component, DestroyRef, inject, Input, OnInit, signal,} from '@angular/core';
-import {OfferPreview} from '../../core/models/offers';
-import {CapitalizePipe} from '../pipes/capitalize.pipe';
-import {ToggleFavoriteDirective} from '../directives/toggle-favorite.directive';
-import {AppRoute, AuthorizationStatus, FavoriteClass,} from '../../core/constants/const';
-import {Store} from '@ngrx/store';
-import {AppState} from '../../core/models/app.state';
-import {selectAuthStatus, selectIsFavoriteOfferLoading,} from '../../store/app/selectors/app.selectors';
-import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
-import {RouterLink} from '@angular/router';
-import {FavoriteOfferService} from '../../core/services/favorite-offer.service';
+import {
+  Component,
+  DestroyRef,
+  inject,
+  Input,
+  OnInit,
+  signal,
+} from '@angular/core';
+import { OfferPreview } from '../../core/models/offers';
+import { CapitalizePipe } from '../pipes/capitalize.pipe';
+import { ToggleFavoriteDirective } from '../directives/toggle-favorite.directive';
+import {
+  AppRoute,
+  AuthorizationStatus,
+  FavoriteClass,
+} from '../../core/constants/const';
+import { Store } from '@ngrx/store';
+import { AppState } from '../../core/models/app.state';
+import {
+  selectAuthStatus,
+  selectIsFavoriteOfferLoading,
+} from '../../store/app/selectors/app.selectors';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { RouterLink } from '@angular/router';
+import { FavoriteOfferService } from '../../core/services/favorite-offer.service';
 
 @Component({
   selector: 'app-offer-card',
@@ -16,9 +30,9 @@ import {FavoriteOfferService} from '../../core/services/favorite-offer.service';
   imports: [CapitalizePipe, ToggleFavoriteDirective, RouterLink],
 })
 export class OfferCardComponent implements OnInit {
-  @Input({required: true}) offer!: OfferPreview;
+  @Input({ required: true }) offer!: OfferPreview;
   private destroyRef = inject(DestroyRef);
-  private favoriteOfferService = inject(FavoriteOfferService)
+  private favoriteOfferService = inject(FavoriteOfferService);
 
   public isFavoriteBtnDisable = signal<boolean>(false);
 
@@ -41,7 +55,11 @@ export class OfferCardComponent implements OnInit {
 
   public onFavoriteToggled() {
     this.isFavoriteBtnDisable.set(true);
-    this.favoriteOfferService.changeStatus(this.authStatus(), this.offer);
+    this.favoriteOfferService.changeStatus(
+      this.authStatus(),
+      this.offer.isFavorite,
+      this.offer.id,
+    );
   }
 
   protected readonly AppRoute = AppRoute;

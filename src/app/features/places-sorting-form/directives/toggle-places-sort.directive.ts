@@ -1,4 +1,10 @@
-import {Directive, EventEmitter, HostListener, Input, Output,} from '@angular/core';
+import {
+  Directive,
+  EventEmitter,
+  HostListener,
+  Input,
+  Output,
+} from '@angular/core';
 
 @Directive({
   selector: '[appTogglePlacesSort]',
