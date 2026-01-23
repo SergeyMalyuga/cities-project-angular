@@ -1,6 +1,6 @@
 <ul class="favorites__list">
   @for (cityName of Object.keys(offers); track cityName) {
-    @if (isKeyOfSortedFavoriteOffers(cityName, offers)) {
+    @if (isKeyOfSortedFavoriteOffers(cityName, offers) && offers[cityName].length > 0) {
       <app-favorite-location-group [cityName]="cityName" [offers]="offers[cityName]"/>
     }
   }

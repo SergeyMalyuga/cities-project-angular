@@ -20,19 +20,17 @@ export class FavoritesComponent implements OnInit {
 
   ngOnInit(): void {
     this.store.select(selectFavoriteOffers).pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe(offers => offers.forEach(offer => {
-        const key = offer.city.name.toLowerCase();
+      .subscribe(offers => {
         const sortedOffers = this.getSortedOffers();
-        if (isKeyOfSortedFavoriteOffers(key, this.favoriteOffers())) {
-
-          sortedOffers[key].push(offer);
-        }
-      }));
+        offers.forEach(offer => {
+          const key = offer.city.name.toLowerCase();
+          if (isKeyOfSortedFavoriteOffers(key, this.favoriteOffers())) {
+            sortedOffers[key].push(offer);
+          }
+        })
+        this.favoriteOffers.set(sortedOffers);
+      });
   }
-
-  /*public isKeyOf(value: string): value is keyof SortedFavoriteOffers {
-    return value in this.favoriteOffers();
-  }*/
 
   private getSortedOffers(): SortedFavoriteOffers {
     return {
