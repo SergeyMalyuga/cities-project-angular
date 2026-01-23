@@ -31,6 +31,7 @@ import { FavoriteOfferService } from '../../core/services/favorite-offer.service
 })
 export class OfferCardComponent implements OnInit {
   @Input({ required: true }) offer!: OfferPreview;
+  @Input() isFavorite = false;
   private destroyRef = inject(DestroyRef);
   private favoriteOfferService = inject(FavoriteOfferService);
 
