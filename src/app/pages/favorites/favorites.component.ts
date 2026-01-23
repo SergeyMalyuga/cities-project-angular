@@ -4,10 +4,12 @@ import {Store} from '@ngrx/store';
 import {selectFavoriteOffers} from '../../store/app/selectors/app.selectors';
 import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
 import {SortedFavoriteOffers} from '../../core/models/sorted-favorite-offers';
+import {FavoriteListComponent} from '../../features/favorite-list/favorite-list.component';
+import {isKeyOfSortedFavoriteOffers} from '../../core/utils/sorted-favorite-offers.guard';
 
 @Component({
   selector: 'app-favorites',
-  imports: [HeaderComponent],
+  imports: [HeaderComponent, FavoriteListComponent],
   templateUrl: './favorites.component.html',
 })
 export class FavoritesComponent implements OnInit {
@@ -21,15 +23,16 @@ export class FavoritesComponent implements OnInit {
       .subscribe(offers => offers.forEach(offer => {
         const key = offer.city.name.toLowerCase();
         const sortedOffers = this.getSortedOffers();
-        if (this.isKeyOf(key)) {
+        if (isKeyOfSortedFavoriteOffers(key, this.favoriteOffers())) {
+
           sortedOffers[key].push(offer);
         }
       }));
   }
 
-  private isKeyOf(value: string): value is keyof SortedFavoriteOffers {
+  /*public isKeyOf(value: string): value is keyof SortedFavoriteOffers {
     return value in this.favoriteOffers();
-  }
+  }*/
 
   private getSortedOffers(): SortedFavoriteOffers {
     return {

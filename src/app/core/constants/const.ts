@@ -30,6 +30,8 @@ export enum CityName {
   DUSSELDORF = 'Dusseldorf',
 }
 
+export type CityLoc = 'paris' | 'cologne' | 'brussels' | 'amsterdam' | 'hamburg' | 'dusseldorf'
+
 export const CITY_LOCATIONS: City[] = [
   {
     name: 'Paris',

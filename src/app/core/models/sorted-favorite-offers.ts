@@ -1,10 +1,4 @@
-import { OfferPreview } from './offers';
+import {OfferPreview} from './offers';
+import {CityLoc} from '../constants/const';
 
-export interface SortedFavoriteOffers {
-  paris: OfferPreview[];
-  cologne: OfferPreview[];
-  brussels: OfferPreview[];
-  amsterdam: OfferPreview[];
-  hamburg: OfferPreview[];
-  dusseldorf: OfferPreview[];
-}
+export type SortedFavoriteOffers = Record<CityLoc, OfferPreview[]>;
