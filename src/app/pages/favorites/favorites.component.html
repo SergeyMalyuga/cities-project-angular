@@ -2,14 +2,18 @@
   <app-header></app-header>
   <main class="page__main page__main--favorites">
     <div class="page__favorites-container container">
-      <section class="favorites">
-        <h1 class="favorites__title">Saved listing</h1>
-        <app-favorite-list [offers]="favoriteOffers()"/>
-      </section>
+      @if (offersAmount() > 0) {
+        <section class="favorites">
+          <h1 class="favorites__title">Saved listing</h1>
+          <app-favorite-list [offers]="favoriteOffers()" />
+        </section>
+      } @else {
+        <app-favorites-empty />
+      }
     </div>
   </main>
   <footer class="footer container">
-    <a class="footer__logo-link" href="main.html">
+    <a class="footer__logo-link" [routerLink]="[AppRoute.MAIN]">
       <img
         class="footer__logo"
         src="img/logo.svg"

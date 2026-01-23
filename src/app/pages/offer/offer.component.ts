@@ -1,30 +1,45 @@
-import {Component, computed, DestroyRef, inject, OnInit, signal,} from '@angular/core';
-import {HeaderComponent} from '../../shared/header/header.component';
-import {Store} from '@ngrx/store';
-import {AppState} from '../../core/models/app.state';
-import {Offer, OfferPreview} from '../../core/models/offers';
-import {OfferApiService} from '../../core/services/offer-api.service';
-import {ActivatedRoute, Router} from '@angular/router';
-import {takeUntilDestroyed, toObservable, toSignal,} from '@angular/core/rxjs-interop';
-import {catchError, EMPTY, forkJoin, of, switchMap} from 'rxjs';
-import {AuthorizationStatus, FavoriteClass, QUANTITY_FIRST_OFFERS} from '../../core/constants/const';
+import {
+  Component,
+  computed,
+  DestroyRef,
+  inject,
+  OnInit,
+  signal,
+} from '@angular/core';
+import { HeaderComponent } from '../../shared/header/header.component';
+import { Store } from '@ngrx/store';
+import { AppState } from '../../core/models/app.state';
+import { Offer, OfferPreview } from '../../core/models/offers';
+import { OfferApiService } from '../../core/services/offer-api.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import {
+  takeUntilDestroyed,
+  toObservable,
+  toSignal,
+} from '@angular/core/rxjs-interop';
+import { catchError, EMPTY, forkJoin, of, switchMap } from 'rxjs';
+import {
+  AuthorizationStatus,
+  FavoriteClass,
+  QUANTITY_FIRST_OFFERS,
+} from '../../core/constants/const';
 import {
   selectAuthStatus,
   selectIsFavoriteOfferLoading,
   selectIsOfferFavorite,
 } from '../../store/app/selectors/app.selectors';
-import {LoaderComponent} from '../../shared/loader/loader.component';
-import {CapitalizePipe} from '../../shared/pipes/capitalize.pipe';
-import {ReviewFormComponent} from '../../features/review-form/review-form.component';
-import {CommentService} from '../../core/services/comment.service';
-import {Comment} from '../../core/models/comments';
-import {SortByDatePipe} from './pipes/sort-by-date.pipe';
-import {FormatMonthYearPipe} from '../../features/places-sorting-form/pipes/format-month-year.pipe';
-import {FormatIsoDatePipe} from '../../features/places-sorting-form/pipes/format-iso-date.pipe';
-import {ToggleFavoriteDirective} from '../../shared/directives/toggle-favorite.directive';
-import {FavoriteOfferService} from '../../core/services/favorite-offer.service';
-import {OfferCardComponent} from '../../shared/offer-card/offer-card.component';
-import {SlicePipe} from '@angular/common';
+import { LoaderComponent } from '../../shared/loader/loader.component';
+import { CapitalizePipe } from '../../shared/pipes/capitalize.pipe';
+import { ReviewFormComponent } from '../../features/review-form/review-form.component';
+import { CommentService } from '../../core/services/comment.service';
+import { Comment } from '../../core/models/comments';
+import { SortByDatePipe } from './pipes/sort-by-date.pipe';
+import { FormatMonthYearPipe } from '../../features/places-sorting-form/pipes/format-month-year.pipe';
+import { FormatIsoDatePipe } from '../../features/places-sorting-form/pipes/format-iso-date.pipe';
+import { ToggleFavoriteDirective } from '../../shared/directives/toggle-favorite.directive';
+import { FavoriteOfferService } from '../../core/services/favorite-offer.service';
+import { OfferCardComponent } from '../../shared/offer-card/offer-card.component';
+import { SlicePipe } from '@angular/common';
 
 @Component({
   selector: 'app-offer',
@@ -59,7 +74,7 @@ export class OfferComponent implements OnInit {
         id ? this.store.select(selectIsOfferFavorite(id)) : of(false),
       ),
     ),
-    {initialValue: false},
+    { initialValue: false },
   );
   public authStatus = signal<AuthorizationStatus>(AuthorizationStatus.UNKNOWN);
   public comments = signal<Comment[]>([]);

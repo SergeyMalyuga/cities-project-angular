@@ -2,13 +2,17 @@
   <div class="favorites__locations locations locations--current">
     <div class="locations__item">
       <a class="locations__item-link" href="#">
-        <span>{{cityName | capitalize}}</span>
+        <span>{{ cityName | capitalize }}</span>
       </a>
     </div>
   </div>
   <div class="favorites__places">
     @for (offer of offers; track offer.id) {
-      <app-offer-card class="favorites__card" [offer]="offer" [isFavorite]="true"/>
+      <app-offer-card
+        class="favorites__card"
+        [offer]="offer"
+        [isFavorite]="true"
+      />
     }
   </div>
 </li>

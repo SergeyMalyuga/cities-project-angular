@@ -1,13 +1,22 @@
 <article
-  [class]="(isFavorite ? 'favorites__card' : '') +
-(!isFavorite ? 'cities__card': '') + ' place-card'">
+  [class]="
+    (isFavorite ? 'favorites__card' : '') +
+    (!isFavorite ? 'cities__card' : '') +
+    ' place-card'
+  "
+>
   @if (offer.isPremium) {
     <div class="place-card__mark">
       <span>Premium</span>
     </div>
   }
-  <div [class]="(isFavorite ? 'favorites__image-wrapper' : '') +
-(!isFavorite ? 'cities__image-wrapper' : '') + ' place-card__image-wrapper'">
+  <div
+    [class]="
+      (isFavorite ? 'favorites__image-wrapper' : '') +
+      (!isFavorite ? 'cities__image-wrapper' : '') +
+      ' place-card__image-wrapper'
+    "
+  >
     <a [routerLink]="[AppRoute.OFFER, offer.id]">
       <img
         class="place-card__image"
